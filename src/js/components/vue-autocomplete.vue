@@ -363,7 +363,7 @@
         });
         // On Done
         ajax.addEventListener('loadend', (e) => {
-          const { responseText } = e.target
+          const { response } = e.target
           let json = JSON.parse(responseText);
           // Callback Event
           this.onAjaxLoaded ? this.onAjaxLoaded(json) : null
