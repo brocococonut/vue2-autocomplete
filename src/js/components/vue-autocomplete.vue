@@ -324,11 +324,8 @@ import { makeRequest } from '../utils/requestHandler'
         // Compose Params
         let params = this.composeParams(val)
 
-        makeRequest(
-          `${this.url}?${params}`,
-          'GET'
-        )
-        then(res => {
+        makeRequest(`${this.url}?${params}`)
+        .then(res => {
           if (res.status === 200) this.json = res.data
           else this.json = []
         })

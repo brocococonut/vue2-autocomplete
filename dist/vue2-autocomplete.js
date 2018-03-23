@@ -2,7 +2,7 @@
  * Copyright (c) 2016 Naufal Rabbani (http://github.com/BosNaufal),
  * ,Licensed Under MIT (http://opensource.org/licenses/MIT),
  * ,
- * ,Vue 2 Autocomplete @ Version 0.2.1,
+ * ,Vue 2 Autocomplete @ Version 0.2.2,
  * 
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -437,8 +437,7 @@ return /******/ (function(modules) { // webpackBootstrap
       // Compose Params
       var params = this.composeParams(val);
 
-      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils_requestHandler__["a" /* makeRequest */])(this.url + '?' + params, 'GET');
-      then(function (res) {
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils_requestHandler__["a" /* makeRequest */])(this.url + '?' + params).then(function (res) {
         if (res.status === 200) _this5.json = res.data;else _this5.json = [];
       }).catch(function () {});
     },
