@@ -88,55 +88,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_vue_autocomplete_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e47ae2be_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_vue_autocomplete_vue__ = __webpack_require__(4);
-var disposed = false
-var normalizeComponent = __webpack_require__(3)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_vue_autocomplete_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e47ae2be_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_vue_autocomplete_vue__["a" /* default */],
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/js/components/vue-autocomplete.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] vue-autocomplete.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e47ae2be", Component.options)
-  } else {
-    hotAPI.reload("data-v-e47ae2be", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 //
 //
 //
@@ -509,7 +460,7 @@ if (false) {(function () {
       });
       // On Done
       ajax.addEventListener('loadend', function (e) {
-        var responseText = e.target.responseText;
+        var response = e.target.response;
 
         var json = JSON.parse(responseText);
         // Callback Event
@@ -548,12 +499,64 @@ if (false) {(function () {
 });
 
 /***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_vue_autocomplete_vue__ = __webpack_require__(0);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1bd173fb_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_vue_autocomplete_vue__ = __webpack_require__(4);
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_vue_autocomplete_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1bd173fb_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_vue_autocomplete_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/js/components/vue-autocomplete.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1bd173fb", Component.options)
+  } else {
+    hotAPI.reload("data-v-1bd173fb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_vue_autocomplete_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_vue_autocomplete_vue__ = __webpack_require__(1);
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0__components_vue_autocomplete_vue__["a" /* default */]);
 
@@ -563,12 +566,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* globals __VUE_SSR_CONTEXT__ */
 
-// this module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
 
 module.exports = function normalizeComponent (
   rawScriptExports,
   compiledTemplate,
+  functionalTemplate,
   injectStyles,
   scopeId,
   moduleIdentifier /* server only */
@@ -592,6 +597,12 @@ module.exports = function normalizeComponent (
   if (compiledTemplate) {
     options.render = compiledTemplate.render
     options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
   }
 
   // scopedId
@@ -632,12 +643,16 @@ module.exports = function normalizeComponent (
     var existing = functional
       ? options.render
       : options.beforeCreate
+
     if (!functional) {
       // inject component registration as beforeCreate hook
       options.beforeCreate = existing
         ? [].concat(existing, hook)
         : [hook]
     } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
       // register for functioal component in vue file
       options.render = function renderWithStyleInjection (h, context) {
         hook.call(context)
@@ -659,72 +674,113 @@ module.exports = function normalizeComponent (
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    class: ((_vm.getClassName('wrapper')) + " autocomplete-wrapper")
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.type),
-      expression: "type"
-    }],
-    ref: "input",
-    class: ((_vm.getClassName('input')) + " autocomplete-input"),
-    attrs: {
-      "type": "text",
-      "id": _vm.id,
-      "placeholder": _vm.placeholder,
-      "name": _vm.name,
-      "autocomplete": "off"
-    },
-    domProps: {
-      "value": (_vm.type)
-    },
-    on: {
-      "input": [function($event) {
-        if ($event.target.composing) { return; }
-        _vm.type = $event.target.value
-      }, _vm.handleInput],
-      "dblclick": _vm.handleDoubleClick,
-      "blur": _vm.handleBlur,
-      "keydown": _vm.handleKeyDown,
-      "focus": _vm.handleFocus
-    }
-  }), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showList && _vm.json.length),
-      expression: "showList && json.length"
-    }],
-    class: ((_vm.getClassName('list')) + " autocomplete autocomplete-list")
-  }, [_c('ul', _vm._l((_vm.json), function(data, i) {
-    return _c('li', {
-      class: _vm.activeClass(i)
-    }, [_c('a', {
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.selectList(data)
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { class: _vm.getClassName("wrapper") + " autocomplete-wrapper" },
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.type,
+            expression: "type"
+          }
+        ],
+        ref: "input",
+        class: _vm.getClassName("input") + " autocomplete-input",
+        attrs: {
+          type: "text",
+          id: _vm.id,
+          placeholder: _vm.placeholder,
+          name: _vm.name,
+          autocomplete: "off"
         },
-        "mousemove": function($event) {
-          _vm.mousemove(i)
+        domProps: { value: _vm.type },
+        on: {
+          input: [
+            function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.type = $event.target.value
+            },
+            _vm.handleInput
+          ],
+          dblclick: _vm.handleDoubleClick,
+          blur: _vm.handleBlur,
+          keydown: _vm.handleKeyDown,
+          focus: _vm.handleFocus
         }
-      }
-    }, [(_vm.onShouldRenderChild) ? _c('div', {
-      domProps: {
-        "innerHTML": _vm._s(_vm.onShouldRenderChild(data))
-      }
-    }) : _vm._e(), _vm._v(" "), (!_vm.onShouldRenderChild) ? _c('div', [_c('b', {
-      staticClass: "autocomplete-anchor-text"
-    }, [_vm._v(_vm._s(_vm.deepValue(data, _vm.anchor)))]), _vm._v(" "), _c('span', {
-      staticClass: "autocomplete-anchor-label"
-    }, [_vm._v(_vm._s(_vm.deepValue(data, _vm.label)))])]) : _vm._e()])])
-  }))])])
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showList && _vm.json.length,
+              expression: "showList && json.length"
+            }
+          ],
+          class: _vm.getClassName("list") + " autocomplete autocomplete-list"
+        },
+        [
+          _c(
+            "ul",
+            _vm._l(_vm.json, function(data, i) {
+              return _c("li", { class: _vm.activeClass(i) }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.selectList(data)
+                      },
+                      mousemove: function($event) {
+                        _vm.mousemove(i)
+                      }
+                    }
+                  },
+                  [
+                    _vm.onShouldRenderChild
+                      ? _c("div", {
+                          domProps: {
+                            innerHTML: _vm._s(_vm.onShouldRenderChild(data))
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.onShouldRenderChild
+                      ? _c("div", [
+                          _c("b", { staticClass: "autocomplete-anchor-text" }, [
+                            _vm._v(_vm._s(_vm.deepValue(data, _vm.anchor)))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            { staticClass: "autocomplete-anchor-label" },
+                            [_vm._v(_vm._s(_vm.deepValue(data, _vm.label)))]
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ])
+            })
+          )
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -733,7 +789,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-e47ae2be", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-1bd173fb", esExports)
   }
 }
 
