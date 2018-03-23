@@ -88,6 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_requestHandler__ = __webpack_require__(3);
 //
 //
 //
@@ -134,8 +135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 //
 //
 //
-//
-//
+
 
 
 /*! Copyright (c) 2016 Naufal Rabbani (http://github.com/BosNaufal)
@@ -146,7 +146,6 @@ return /******/ (function(modules) { // webpackBootstrap
 */
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-
   props: {
     id: String,
     name: String,
@@ -233,13 +232,8 @@ return /******/ (function(modules) { // webpackBootstrap
     onBlur: Function,
     onHide: Function,
     onFocus: Function,
-    onSelect: Function,
-    onBeforeAjax: Function,
-    onAjaxProgress: Function,
-    onAjaxLoaded: Function,
-    onShouldGetData: Function
+    onSelect: Function
   },
-
   data: function data() {
     return {
       showList: false,
@@ -250,14 +244,13 @@ return /******/ (function(modules) { // webpackBootstrap
     };
   },
 
-
   watch: {
     options: function options(newVal, oldVal) {
       if (this.filterByAnchor) {
         var type = this.type,
             anchor = this.anchor;
 
-        var regex = new RegExp("" + type, 'i');
+        var regex = new RegExp('' + type, 'i');
         var filtered = newVal.filter(function (item) {
           var found = item[anchor].search(regex) !== -1;
           return found;
@@ -268,16 +261,14 @@ return /******/ (function(modules) { // webpackBootstrap
       }
     }
   },
-
   methods: {
     getClassName: function getClassName(part) {
       var classes = this.classes,
           className = this.className;
 
-      if (classes[part]) return "" + classes[part];
-      return className ? className + "-" + part : '';
+      if (classes[part]) return '' + classes[part];
+      return className ? className + '-' + part : '';
     },
-
 
     // Netralize Autocomplete
     clearInput: function clearInput() {
@@ -286,7 +277,6 @@ return /******/ (function(modules) { // webpackBootstrap
       this.json = [];
       this.focusList = "";
     },
-
 
     // Get the original data
     cleanUp: function cleanUp(data) {
@@ -366,7 +356,6 @@ return /******/ (function(modules) { // webpackBootstrap
     /*==============================
       LIST EVENTS
     =============================*/
-
     handleDoubleClick: function handleDoubleClick() {
       this.json = [];
       this.getData("");
@@ -395,7 +384,7 @@ return /******/ (function(modules) { // webpackBootstrap
     },
     activeClass: function activeClass(i) {
       var focusClass = i === this.focusList ? 'focus-list' : '';
-      return "" + focusClass;
+      return '' + focusClass;
     },
     selectList: function selectList(data) {
       // Deep clone of the original object
@@ -419,17 +408,16 @@ return /******/ (function(modules) { // webpackBootstrap
     /*==============================
       AJAX EVENTS
     =============================*/
-
     composeParams: function composeParams(val) {
       var _this3 = this;
 
       var encode = function encode(val) {
         return _this3.encodeParams ? encodeURIComponent(val) : val;
       };
-      var params = this.param + "=" + encode(val);
+      var params = this.param + '=' + encode(val);
       if (this.customParams) {
         Object.keys(this.customParams).forEach(function (key) {
-          params += "&" + key + "=" + encode(_this3.customParams[key]);
+          params += '&' + key + '=' + encode(_this3.customParams[key]);
         });
       }
       return params;
@@ -446,29 +434,13 @@ return /******/ (function(modules) { // webpackBootstrap
     doAjax: function doAjax(val) {
       var _this5 = this;
 
-      // Callback Event
-      this.onBeforeAjax ? this.onBeforeAjax(val) : null;
       // Compose Params
       var params = this.composeParams(val);
-      // Init Ajax
-      var ajax = new XMLHttpRequest();
-      ajax.open('GET', this.url + "?" + params, true);
-      this.composeHeader(ajax);
-      // Callback Event
-      ajax.addEventListener('progress', function (data) {
-        if (data.lengthComputable && _this5.onAjaxProgress) _this5.onAjaxProgress(data);
-      });
-      // On Done
-      ajax.addEventListener('loadend', function (e) {
-        var response = e.target.response;
 
-        var json = JSON.parse(responseText);
-        // Callback Event
-        _this5.onAjaxLoaded ? _this5.onAjaxLoaded(json) : null;
-        _this5.json = _this5.process ? _this5.process(json) : json;
-      });
-      // Send Ajax
-      ajax.send();
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils_requestHandler__["a" /* makeRequest */])(this.url + '?' + params, 'GET');
+      then(function (res) {
+        if (res.status === 200) _this5.json = res.data;else _this5.json = [];
+      }).catch(function () {});
     },
     getData: function getData(value) {
       if (value.length < this.min || !this.url) return;
@@ -505,9 +477,9 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_vue_autocomplete_vue__ = __webpack_require__(0);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1bd173fb_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_vue_autocomplete_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1bd173fb_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_vue_autocomplete_vue__ = __webpack_require__(5);
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 
 
@@ -562,6 +534,82 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeRequest; });
+/* unused harmony export serialize */
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * serialize a form/object into a url-encoded string
+ * @param  {Object} obj    Input to serialize
+ * @param  {String} prefix What to prefix keys with (normally null)
+ * @return {String}
+ */
+var serializeObj = function serializeObj(obj, prefix) {
+  var str = [];
+  var p = void 0;
+  for (p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      var k = prefix ? prefix + "[" + p + "]" : p;
+      var v = obj[p];
+      str.push(v !== null && (typeof v === "undefined" ? "undefined" : _typeof(v)) === "object" ? serializeObj(v, k) : encodeURIComponent(k) + "=" + encodeURIComponent(v));
+    }
+  }return str.join("&");
+};
+
+/**
+ * Make a request to the server or provided uri
+ * @param  {String} uri     The uri to connect to
+ * @param  {String} method  What kind of request to make (GET, PUT, etc.)
+ * @param  {Array}  headers What header options to add
+ *                          [
+ *                            {
+ *                              key: "Content-type",
+ *                              val: "application/x-www-form-urlencoded"
+ *                            }
+ *                          ]
+ * @param  {Object} body    What data to push
+ * @return {Promise}
+ */
+var makeRequest = function makeRequest(uri, method, headers, body, response_type, form) {
+  return new Promise(function (resolve, reject) {
+    var req = new XMLHttpRequest();
+
+    body = body || {};
+    method = method || "GET";
+
+    req.open(method, uri);
+
+    req.responseType = response_type || 'json';
+
+    if (headers && Array.isArray(headers) && headers.length > 0) for (var i = 0; i < headers.length; i++) {
+      try {
+        req.setRequestHeader(null, headers[i].key, headers[i].value);
+      } catch (err) {
+        return reject(err);
+      }
+    } else if ((typeof body === "undefined" ? "undefined" : _typeof(body)) === "object" && method !== "GET" && !form) {
+      body = JSON.stringify(body);
+      req.setRequestHeader("Content-type", "application/json");
+    }
+
+    req.onreadystatechange = function () {
+      if (req.readyState === 4) return resolve({
+        status: req.status,
+        data: req.response
+      });
+    };
+
+    req.send(body);
+  });
+};
+
+var serialize = serializeObj;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -670,7 +718,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

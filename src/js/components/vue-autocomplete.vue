@@ -39,14 +39,13 @@
           </a>
         </li>
       </ul>
-
     </div>
-
   </div>
 </template>
 
 
 <script>
+import { makeRequest } from '../utils/requestHandler'
 
   /*! Copyright (c) 2016 Naufal Rabbani (http://github.com/BosNaufal)
   * Licensed Under MIT (http://opensource.org/licenses/MIT)
@@ -56,7 +55,6 @@
   */
 
   export default {
-
     props: {
       id: String,
       name: String,
@@ -141,13 +139,8 @@
       onBlur: Function,
       onHide: Function,
       onFocus: Function,
-      onSelect: Function,
-      onBeforeAjax: Function,
-      onAjaxProgress: Function,
-      onAjaxLoaded: Function,
-      onShouldGetData: Function,
+      onSelect: Function
     },
-
     data() {
       return {
         showList: false,
@@ -157,7 +150,6 @@
         debounceTask: undefined,
       };
     },
-
     watch: {
       options(newVal, oldVal) {
         if (this.filterByAnchor) {
@@ -173,15 +165,12 @@
         }
       }
     },
-
     methods: {
-
       getClassName(part) {
         const { classes, className } = this
         if (classes[part]) return `${classes[part]}`
         return className ? `${className}-${part}` : ''
       },
-
       // Netralize Autocomplete
       clearInput() {
         this.showList = false
@@ -189,12 +178,10 @@
         this.json = []
         this.focusList = ""
       },
-
       // Get the original data
       cleanUp(data){
         return JSON.parse(JSON.stringify(data));
       },
-
 
       /*==============================
         INPUT EVENTS
@@ -214,8 +201,6 @@
           return this.getData(value)
         }
       },
-
-
       handleKeyDown(e){
         let key = e.keyCode;
 
@@ -260,17 +245,13 @@
         if (outOfRangeTop) nextFocusList = bottomItemIndex
         this.focusList = nextFocusList
       },
-
       setValue(val) {
         this.type = val
       },
 
-
-
       /*==============================
         LIST EVENTS
       =============================*/
-
       handleDoubleClick(){
         this.json = [];
         this.getData("")
@@ -278,7 +259,6 @@
         this.onShow ? this.onShow() : null
         this.showList = true;
       },
-
       handleBlur(e){
         // Callback Event
         this.onBlur ? this.onBlur(e) : null
@@ -288,22 +268,18 @@
           this.showList = false;
         },250);
       },
-
       handleFocus(e){
         this.focusList = 0;
         // Callback Event
         this.onFocus ? this.onFocus(e) : null
       },
-
       mousemove(i){
         this.focusList = i;
       },
-
       activeClass(i){
         const focusClass = i === this.focusList ? 'focus-list' : ''
         return `${focusClass}`
       },
-
       selectList(data){
         // Deep clone of the original object
         const clean = this.cleanUp(data);
@@ -314,7 +290,6 @@
         // Callback Event
         this.onSelect ? this.onSelect(clean) : null
       },
-
       deepValue(obj, path) {
         const arrayPath = path.split('.')
         for (var i = 0; i < arrayPath.length; i++) {
@@ -323,12 +298,9 @@
         return obj;
       },
 
-
-
       /*==============================
         AJAX EVENTS
       =============================*/
-
       composeParams(val) {
         const encode = (val) => this.encodeParams ? encodeURIComponent(val) : val
         let params = `${this.param}=${encode(val)}`
@@ -349,28 +321,18 @@
       },
 
       doAjax(val) {
-        // Callback Event
-        this.onBeforeAjax ? this.onBeforeAjax(val) : null
         // Compose Params
         let params = this.composeParams(val)
-        // Init Ajax
-        let ajax = new XMLHttpRequest();
-        ajax.open('GET', `${this.url}?${params}`, true);
-        this.composeHeader(ajax)
-        // Callback Event
-        ajax.addEventListener('progress', (data) => {
-          if(data.lengthComputable && this.onAjaxProgress) this.onAjaxProgress(data)
-        });
-        // On Done
-        ajax.addEventListener('loadend', (e) => {
-          const { response } = e.target
-          let json = JSON.parse(responseText);
-          // Callback Event
-          this.onAjaxLoaded ? this.onAjaxLoaded(json) : null
-          this.json = this.process ? this.process(json) : json;
-        });
-        // Send Ajax
-        ajax.send();
+
+        makeRequest(
+          `${this.url}?${params}`,
+          'GET'
+        )
+        then(res => {
+          if (res.status === 200) this.json = res.data
+          else this.json = []
+        })
+        .catch(() => {})
       },
 
       getData(value){
